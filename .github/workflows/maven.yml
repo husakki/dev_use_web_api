@@ -35,6 +35,7 @@ jobs:
         path: testphase
 
   test:
+    needs: build
     runs-on: ubuntu-latest
 
     services:
