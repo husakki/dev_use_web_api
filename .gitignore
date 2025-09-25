@@ -116,3 +116,4 @@ fabric.properties
 /use-gui/target
 /use-assembly/target
 /.idea
+/use-api/target
