@@ -1,0 +1,1551 @@
+{
+	"info": {
+		"_postman_id": "53687375-8243-4fe8-98d1-543e1f899f2d",
+		"name": "Uni.Ba.ApiSecurityTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17943160"
+	},
+	"item": [
+		{
+			"name": "RegisterUserSuccess",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"pm.test(\"Response Content-Type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+							"});",
+							"",
+							"pm.test('Response contains required fields: id and actionType', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.have.all.keys('id', 'actionType');",
+							"})",
+							"",
+							"pm.test('The id must be a non-empty string', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.id).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, 'Value should not be empty');",
+							"})",
+							"",
+							"pm.test('ActionType must be a non-empty string', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.actionType).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, 'Value should not be empty');",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer xyz",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{UserEmail}}\",\n    \"password\": \"{{UserPassword}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/auth/register",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterUserFail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.response.to.have.status(400)",
+							"pm.test('Response status code is 400', function () {",
+							"    pm.expect(pm.response.code).to.eql(400);",
+							"})",
+							"",
+							"pm.test('Response content type is application/problem+json', function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/problem+json');",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer xyz",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{UserEmail}}\",\n    \"password\": \"{{UserPassword}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/auth/register",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HelloAuthenticatedFail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 401', function () {",
+							"    pm.expect(pm.response.code).to.eql(401);",
+							"})",
+							"",
+							"pm.test('Response content type is application/problem+json', function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/problem+json');",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/auth",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginUserFail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.response.to.have.status(400)",
+							"pm.test('Response status code is 400', function () {",
+							"    pm.expect(pm.response.code).to.eql(400);",
+							"})",
+							"",
+							"pm.test('Response content type is application/problem+json', function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/problem+json');",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{UserEmail}}\",\n    \"password\": \"wrongPassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/auth/login",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginUserSuccess",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"pm.test(\"Response Content-Type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+							"});",
+							"",
+							"pm.test('Response has required fields', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.have.all.keys('token', 'refreshToken');",
+							"})",
+							"",
+							"pm.test('Token must be a non-empty string', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.token).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, 'Token should not be empty');",
+							"})",
+							"",
+							"pm.test('The refreshToken must be a non-empty string', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.refreshToken).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, 'Value should not be empty');",
+							"})",
+							"",
+							"const accessToken = pm.response.json().token",
+							"const refreshToken = pm.response.json().refreshToken",
+							"",
+							"pm.collectionVariables.set(\"AccessToken\", accessToken)",
+							"pm.collectionVariables.set(\"RefreshToken\", refreshToken)"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{UserEmail}}\",\n    \"password\": \"{{UserPassword}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/auth/login",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HelloAuthenticatedSuccess",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/auth/",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RefreshAccessToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"});",
+							"",
+							"pm.test(\"Response Content-Type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+							"});",
+							"",
+							"pm.test(\"Response has required fields: token and refreshToken\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.have.all.keys('token', 'refreshToken');",
+							"});",
+							"",
+							"pm.test(\"Token is a non-empty string\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.token).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Token should not be empty\");",
+							"});",
+							"",
+							"pm.test(\"RefreshToken must be a non-empty string\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.refreshToken).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							"const accessToken = pm.response.json().token",
+							"const refreshToken = pm.response.json().refreshToken",
+							"",
+							"pm.collectionVariables.set(\"AccessToken\", accessToken)",
+							"pm.collectionVariables.set(\"RefreshToken\", refreshToken)"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"refreshToken\": \"{{RefreshToken}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/auth/login",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HelloAuthenticatedSuccess",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/auth/",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllApiTokensEmpty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"pm.test('Response content type is application/json', function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+							"})",
+							"",
+							"pm.test('Response is an array', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('array');",
+							"})",
+							"",
+							"pm.test('The response array must be empty', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('array').that.is.empty;",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/api/getAll",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"api",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateApiToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"pm.test(\"Response Content-Type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+							"});",
+							"",
+							"pm.test('Response has required fields: token and refreshToken', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.have.all.keys('token', 'refreshToken');",
+							"})",
+							"",
+							"pm.test('Token is a non-empty string', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.token).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, 'Token should not be empty');",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/api/create",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"api",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllApiTokensNotEmpty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Response Content-Type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+							"});",
+							"",
+							"pm.test(\"Response is an array\", function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('array');",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response array is not empty\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+							"});",
+							"",
+							"pm.test(\"Each item in the response array is a non-empty string\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('array');",
+							"    responseData.forEach(item => {",
+							"        pm.expect(item).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"    });",
+							"});",
+							"",
+							"const apiToken = pm.response.json()[0]",
+							"",
+							"pm.environment.set(\"ApiToken\", apiToken)"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/api/getAll",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"api",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HelloAuthenticatedApiTokenSuccess",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ApiToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/auth/",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUserFailPermission",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 403', function () {",
+							"    pm.expect(pm.response.code).to.eql(403);",
+							"})",
+							"",
+							"pm.test('Response content type is application/problem+json', function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/problem+json');",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ApiToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer xyz",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{Host}}/auth/delete",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteApiTokenFailPermission",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function parseJwt (token) {",
+							"    const base64Url = token.split('.')[1]; // get payload part",
+							"    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');",
+							"    const jsonPayload = decodeURIComponent(",
+							"        atob(base64)",
+							"            .split('')",
+							"            .map(c => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`)",
+							"            .join('')",
+							"    );",
+							"    return JSON.parse(jsonPayload);",
+							"}",
+							"",
+							"const apiToken = pm.environment.get(\"ApiToken\");",
+							"",
+							"const apiTokenId = parseJwt(apiToken).jti;",
+							"",
+							"pm.environment.set(\"ApiTokenId\", apiTokenId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 403', function () {",
+							"    pm.expect(pm.response.code).to.equal(403);",
+							"})",
+							"",
+							"pm.test('Response content type is application/problem+json', function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/problem+json');",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ApiToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/api/delete/{{ApiTokenId}}",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"api",
+						"delete",
+						"{{ApiTokenId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteApiToken",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"pm.test('Content-Type is application/json', function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+							"})",
+							"",
+							"pm.test('Response contains the required fields', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.have.all.keys('id', 'actionType');",
+							"})",
+							"",
+							"pm.test('ActionType must be a non-empty string', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.actionType).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, 'ActionType should not be empty');",
+							"})",
+							"",
+							"pm.environment.unset(\"ApiToken\")",
+							"pm.environment.unset(\"ApiTokenId\")",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/api/delete/{{ApiTokenId}}",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"api",
+						"delete",
+						"{{ApiTokenId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllApiTokensEmpty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"pm.test('Response content type is application/json', function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+							"})",
+							"",
+							"pm.test('Response is an array', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('array');",
+							"})",
+							"",
+							"pm.test('The response array must be empty', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('array').that.is.empty;",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/api/getAll",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"api",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HelloAuthenticatedApiTokenFail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 401', function () {",
+							"    pm.expect(pm.response.code).to.equal(401);",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ApiToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/auth/",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ResourceLimit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"pm.test('Response content type is application/json', function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+							"})",
+							"",
+							"pm.test('Response has required fields: time and unitType', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.have.all.keys('time', 'unitType');",
+							"})",
+							"",
+							"pm.test('Time is not zero and a non-negative integer', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.time).to.be.a('number').and.to.be.at.least(1);",
+							"})",
+							"",
+							"pm.test('UnitType must be a non-empty string', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.unitType).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, 'UnitType should not be empty');",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/user/resourceLimit",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"user",
+						"resourceLimit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LongRunningTask",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"pm.test(`Request duration is at least 20 seconds`, function () {",
+							"    pm.expect(pm.response.responseTime).to.be.at.least(20000);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/user/longRun",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"user",
+						"longRun"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ResourceLimit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"pm.test('Response content type is application/json', function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+							"})",
+							"",
+							"pm.test('Response has required fields: time and unitType', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.have.all.keys('time', 'unitType');",
+							"})",
+							"",
+							"pm.test('Time is not zero and a non-negative integer', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.time).to.be.a('number').and.to.be.at.least(1);",
+							"})",
+							"",
+							"pm.test('UnitType must be a non-empty string', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.unitType).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, 'UnitType should not be empty');",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/user/resourceLimit",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"user",
+						"resourceLimit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LongRunningTaskSecond",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"pm.test(`Request duration is at least 20 seconds`, function () {",
+							"    pm.expect(pm.response.responseTime).to.be.at.least(20000);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/user/longRun",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"user",
+						"longRun"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LongRunningTaskThird",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"pm.test(`Request duration is at least 20 seconds`, function () {",
+							"    pm.expect(pm.response.responseTime).to.be.at.least(20000);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/user/longRun",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"user",
+						"longRun"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LongRunningTaskFailPermission",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 403', function () {",
+							"    pm.expect(pm.response.code).to.eql(403);",
+							"})",
+							"",
+							"pm.test('Response content type is application/problem+json', function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/problem+json');",
+							"})",
+							"",
+							"pm.test(`Request duration is less than 20 seconds`, function () {",
+							"    pm.expect(pm.response.responseTime).to.be.not.greaterThanOrEqual(20000);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/user/longRun",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"user",
+						"longRun"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ResourceLimit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"pm.test(\"Response Content-Type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+							"});",
+							"",
+							"pm.test('Response contains required fields: time and unitType', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.have.all.keys('time', 'unitType');",
+							"})",
+							"",
+							"pm.test('Time is a zero or a negativ integer', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.time).to.be.a('number').and.to.be.lessThanOrEqual(0);",
+							"})",
+							"",
+							"pm.test('UnitType must be a non-empty string', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.unitType).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, 'Value should not be empty');",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Host}}/user/resourceLimit",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"user",
+						"resourceLimit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 200', function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"})",
+							"",
+							"pm.test(\"Response Content-Type is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+							"});",
+							"",
+							"pm.test('Response contains the required fields', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.have.all.keys('id', 'actionType');",
+							"})",
+							"",
+							"pm.test('ActionType must be a non-empty string', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.actionType).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, 'ActionType should not be empty');",
+							"})",
+							"",
+							"pm.collectionVariables.unset(\"AccessToken\")",
+							"pm.collectionVariables.unset(\"RefreshToken\")"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer xyz",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{Host}}/auth/delete",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginUserFail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 400', function () {",
+							"    pm.expect(pm.response.code).to.equal(400);",
+							"})",
+							"",
+							"pm.test('Response content type is application/problem+json', function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/problem+json');",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{UserEmail}}\",\n    \"password\": \"{{UserPassword}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/auth/login",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Host",
+			"value": "127.0.0.1:8080"
+		},
+		{
+			"key": "UserEmail",
+			"value": "apiUser@hello.com"
+		},
+		{
+			"key": "UserPassword",
+			"value": "SecurePassword"
+		},
+		{
+			"key": "AccessToken",
+			"value": ""
+		},
+		{
+			"key": "RefreshToken",
+			"value": ""
+		},
+		{
+			"key": "ApiToken",
+			"value": ""
+		},
+		{
+			"key": "ApiTokenId",
+			"value": ""
+		}
+	]
+}
