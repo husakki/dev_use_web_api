@@ -26,10 +26,36 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
                 ExceptionResponse exceptionResponse = new ExceptionResponse(HttpStatus.BAD_REQUEST, errors,
                                 request.getDescription(false));
+                
+                // Headers for the response
+                HttpHeaders responseHeaders = new HttpHeaders();
+                responseHeaders.add("content-type", "application/problem+json");
+
+                // Using ExceptionResponseRecord here because else the whole stack trace of
+                // parent class RuntimeError is included which would give a tone of server
+                // information to the client
+                return ResponseEntity
+                                .status(exceptionResponse.getHttpStatus())
+                                .headers(responseHeaders)
+                                .body(exceptionResponse.toExceptionResponseRecord());
+        }
+
+        public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+                        WebRequest request) {
+
+                Map<String, String> errors = new HashMap<>();
+
+                ex.getBindingResult().getFieldErrors()
+                                .forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
+
+                ExceptionResponse exceptionResponse = new ExceptionResponse(HttpStatus.BAD_REQUEST, errors,
+                                request.getDescription(false));
 
                 System.out.println(exceptionResponse);
 
-                // Using ExceptionResponseRecord here because else the whole stack trace of parent class RuntimeError is included which would give a tone of server information to the client
+                // Using ExceptionResponseRecord here because else the whole stack trace of
+                // parent class RuntimeError is included which would give a tone of server
+                // information to the client
                 return new ResponseEntity<>(exceptionResponse.toExceptionResponseRecord(),
                                 exceptionResponse.getHttpStatus());
         }
