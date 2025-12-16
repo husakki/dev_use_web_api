@@ -1,0 +1,29 @@
+<configuration>
+    <!-- Include spring console-appendaer to make the rootLogger use this ones CONSOLE appender with nice coloring -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <!-- Rolling File Appender for filter logs -->
+    <appender name="AUDIT_LOGS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>secure-use-api/logs/filter-logs.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>secure-use-api/logs/requests.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>15</maxHistory> <!-- Keep logs for 15 days -->
+            <totalSizeCap>1GB</totalSizeCap> <!-- Limit total size of log files -->
+        </rollingPolicy>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Logger for the AuditLogMiddleware -->
+    <logger name="org.tzi.use.api_security.rest.middleware.AuditLogMiddleware" level="INFO"
+        additivity="false">
+        <appender-ref ref="AUDIT_LOGS" />
+    </logger>
+
+    <!-- Root logger for all other logs (including Spring logs) -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

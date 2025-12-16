@@ -8,6 +8,14 @@
         <option value="$PROJECT_DIR$/use-api/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/secure-use-api-second/pom.xml" />
+        <option value="$PROJECT_DIR$/secure-use-api/pom.xml" />
+        <option value="$PROJECT_DIR$/secure-use-api_old/pom.xml" />
+      </set>
+    </option>
+    <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="21" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
