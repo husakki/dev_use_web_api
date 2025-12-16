@@ -1,22 +1,67 @@
 {
-	"id": "95fff205-c3c4-445e-82aa-5af17b63047c",
+	"id": "92405825-09dd-4279-984c-9e0be2793380",
 	"name": "Uni.Ba.ApiSecurityTest",
-	"timestamp": "2025-09-28T00:10:08.992Z",
+	"timestamp": "2025-12-15T14:43:28.502Z",
 	"collection_id": "17943160-53687375-8243-4fe8-98d1-543e1f899f2d",
 	"folder_id": 0,
 	"environment_id": "0",
-	"totalPass": 400,
+	"totalPass": 86,
 	"delay": 0,
 	"persist": true,
 	"status": "finished",
-	"startedAt": "2025-09-28T00:04:22.434Z",
+	"startedAt": "2025-12-15T14:42:17.139Z",
 	"totalFail": 0,
 	"results": [
+		{
+			"id": "b9a5d7a6-b8dd-428c-9c1c-474fb3a2ad07",
+			"name": "RegisterUserInputValidationFail",
+			"url": "127.0.0.1:8080/auth/register",
+			"time": 1088,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Response status code is 400": true,
+				"Response content type is application/problem+json": true,
+				"The password to short message must be present": true,
+				"The email not well-formated message must be present": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response content type is application/problem+json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The password to short message must be present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"The email not well-formated message must be present": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1088
+			],
+			"allTests": [
+				{
+					"Response status code is 400": true,
+					"Response content type is application/problem+json": true,
+					"The password to short message must be present": true,
+					"The email not well-formated message must be present": true
+				}
+			]
+		},
 		{
 			"id": "15986188-ab75-40be-8bdb-79f41bf87a1a",
 			"name": "RegisterUserSuccess",
 			"url": "127.0.0.1:8080/auth/register",
-			"time": 2584,
+			"time": 3252,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -30,62 +75,30 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response Content-Type is application/json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response contains required fields: id and actionType": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"The id must be a non-empty string": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"ActionType must be a non-empty string": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				3115,
-				1840,
-				1760,
-				2088,
-				2584
+				3252
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response contains required fields: id and actionType": true,
-					"The id must be a non-empty string": true,
-					"ActionType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response contains required fields: id and actionType": true,
-					"The id must be a non-empty string": true,
-					"ActionType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response contains required fields: id and actionType": true,
-					"The id must be a non-empty string": true,
-					"ActionType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response contains required fields: id and actionType": true,
-					"The id must be a non-empty string": true,
-					"ActionType must be a non-empty string": true
-				},
 				{
 					"Response status code is 200": true,
 					"Response Content-Type is application/json": true,
@@ -99,7 +112,7 @@
 			"id": "6e7bde1a-79e0-4ffe-8dea-8c91a902b1d5",
 			"name": "RegisterUserFail",
 			"url": "127.0.0.1:8080/auth/register",
-			"time": 87,
+			"time": 73,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -110,38 +123,18 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 400": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response content type is application/problem+json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				135,
-				29,
-				25,
-				30,
-				87
+				73
 			],
 			"allTests": [
-				{
-					"Response status code is 400": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 400": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 400": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 400": true,
-					"Response content type is application/problem+json": true
-				},
 				{
 					"Response status code is 400": true,
 					"Response content type is application/problem+json": true
@@ -152,7 +145,7 @@
 			"id": "8a3bc1df-b648-438c-80a8-d06ef6a9a382",
 			"name": "HelloAuthenticatedFail",
 			"url": "127.0.0.1:8080/auth",
-			"time": 30,
+			"time": 18,
 			"responseCode": {
 				"code": 401,
 				"name": "Unauthorized"
@@ -163,38 +156,18 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 401": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response content type is application/problem+json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				144,
-				26,
-				15,
-				18,
-				30
+				18
 			],
 			"allTests": [
-				{
-					"Response status code is 401": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 401": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 401": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 401": true,
-					"Response content type is application/problem+json": true
-				},
 				{
 					"Response status code is 401": true,
 					"Response content type is application/problem+json": true
@@ -205,7 +178,7 @@
 			"id": "a28f4dde-4e32-43be-9914-b97c1058e54d",
 			"name": "LoginUserFail",
 			"url": "127.0.0.1:8080/auth/login",
-			"time": 1648,
+			"time": 2059,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -216,38 +189,18 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 400": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response content type is application/problem+json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				2518,
-				2451,
-				1853,
-				1601,
-				1648
+				2059
 			],
 			"allTests": [
-				{
-					"Response status code is 400": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 400": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 400": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 400": true,
-					"Response content type is application/problem+json": true
-				},
 				{
 					"Response status code is 400": true,
 					"Response content type is application/problem+json": true
@@ -258,7 +211,7 @@
 			"id": "fbd12ddf-939c-4266-aa77-2442fe55c2df",
 			"name": "LoginUserSuccess",
 			"url": "127.0.0.1:8080/auth/login",
-			"time": 1622,
+			"time": 1915,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -272,62 +225,30 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response Content-Type is application/json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response has required fields": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Token must be a non-empty string": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"The refreshToken must be a non-empty string": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				2556,
-				1604,
-				1606,
-				1891,
-				1622
+				1915
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response has required fields": true,
-					"Token must be a non-empty string": true,
-					"The refreshToken must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response has required fields": true,
-					"Token must be a non-empty string": true,
-					"The refreshToken must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response has required fields": true,
-					"Token must be a non-empty string": true,
-					"The refreshToken must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response has required fields": true,
-					"Token must be a non-empty string": true,
-					"The refreshToken must be a non-empty string": true
-				},
 				{
 					"Response status code is 200": true,
 					"Response Content-Type is application/json": true,
@@ -341,7 +262,7 @@
 			"id": "ecb38d56-b671-47a9-9adf-886211b4b5a0",
 			"name": "HelloAuthenticatedSuccess",
 			"url": "127.0.0.1:8080/auth/",
-			"time": 22,
+			"time": 66,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -351,30 +272,14 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				86,
-				18,
-				26,
-				18,
-				22
+				66
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true
-				},
-				{
-					"Response status code is 200": true
-				},
-				{
-					"Response status code is 200": true
-				},
-				{
-					"Response status code is 200": true
-				},
 				{
 					"Response status code is 200": true
 				}
@@ -384,7 +289,7 @@
 			"id": "7fdf3024-02e5-43e3-89a6-12e0f0474377",
 			"name": "RefreshAccessToken",
 			"url": "127.0.0.1:8080/auth/login",
-			"time": 29,
+			"time": 99,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -398,62 +303,30 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response Content-Type is application/json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response has required fields: token and refreshToken": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Token is a non-empty string": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"RefreshToken must be a non-empty string": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				80,
-				40,
-				47,
-				43,
-				29
+				99
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response has required fields: token and refreshToken": true,
-					"Token is a non-empty string": true,
-					"RefreshToken must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response has required fields: token and refreshToken": true,
-					"Token is a non-empty string": true,
-					"RefreshToken must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response has required fields: token and refreshToken": true,
-					"Token is a non-empty string": true,
-					"RefreshToken must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response has required fields: token and refreshToken": true,
-					"Token is a non-empty string": true,
-					"RefreshToken must be a non-empty string": true
-				},
 				{
 					"Response status code is 200": true,
 					"Response Content-Type is application/json": true,
@@ -465,9 +338,9 @@
 		},
 		{
 			"id": "72d7b0c0-7c32-4c81-9210-576734e41136",
-			"name": "HelloAuthenticatedSuccess",
+			"name": "HelloAuthenticatedRefreshedSuccess",
 			"url": "127.0.0.1:8080/auth/",
-			"time": 13,
+			"time": 35,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -477,30 +350,14 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				43,
-				21,
-				31,
-				19,
-				13
+				35
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true
-				},
-				{
-					"Response status code is 200": true
-				},
-				{
-					"Response status code is 200": true
-				},
-				{
-					"Response status code is 200": true
-				},
 				{
 					"Response status code is 200": true
 				}
@@ -510,7 +367,7 @@
 			"id": "e609169d-9e3a-4867-8aaa-1edb98a2ce7c",
 			"name": "GetAllApiTokensEmpty",
 			"url": "127.0.0.1:8080/api/getAll",
-			"time": 30,
+			"time": 52,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -523,54 +380,26 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response content type is application/json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response is an array": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"The response array must be empty": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				68,
-				29,
-				33,
-				22,
-				30
+				52
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response is an array": true,
-					"The response array must be empty": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response is an array": true,
-					"The response array must be empty": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response is an array": true,
-					"The response array must be empty": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response is an array": true,
-					"The response array must be empty": true
-				},
 				{
 					"Response status code is 200": true,
 					"Response content type is application/json": true,
@@ -583,7 +412,7 @@
 			"id": "9c133ae9-c512-49bd-b34b-472f2d7898de",
 			"name": "CreateApiToken",
 			"url": "127.0.0.1:8080/api/create",
-			"time": 18,
+			"time": 34,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -596,54 +425,26 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response Content-Type is application/json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response has required fields: token and refreshToken": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Token is a non-empty string": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				152,
-				28,
-				26,
-				35,
-				18
+				34
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response has required fields: token and refreshToken": true,
-					"Token is a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response has required fields: token and refreshToken": true,
-					"Token is a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response has required fields: token and refreshToken": true,
-					"Token is a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response has required fields: token and refreshToken": true,
-					"Token is a non-empty string": true
-				},
 				{
 					"Response status code is 200": true,
 					"Response Content-Type is application/json": true,
@@ -656,7 +457,7 @@
 			"id": "031eeba4-d034-4cb1-8616-f6c96824e98d",
 			"name": "GetAllApiTokensNotEmpty",
 			"url": "127.0.0.1:8080/api/getAll",
-			"time": 20,
+			"time": 25,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -670,62 +471,30 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response Content-Type is application/json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response is an array": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response array is not empty": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Each item in the response array is a non-empty string": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				30,
-				26,
-				36,
-				33,
-				20
+				25
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response is an array": true,
-					"Response array is not empty": true,
-					"Each item in the response array is a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response is an array": true,
-					"Response array is not empty": true,
-					"Each item in the response array is a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response is an array": true,
-					"Response array is not empty": true,
-					"Each item in the response array is a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response is an array": true,
-					"Response array is not empty": true,
-					"Each item in the response array is a non-empty string": true
-				},
 				{
 					"Response status code is 200": true,
 					"Response Content-Type is application/json": true,
@@ -749,30 +518,14 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				102,
-				24,
-				42,
-				25,
 				25
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true
-				},
-				{
-					"Response status code is 200": true
-				},
-				{
-					"Response status code is 200": true
-				},
-				{
-					"Response status code is 200": true
-				},
 				{
 					"Response status code is 200": true
 				}
@@ -782,7 +535,7 @@
 			"id": "ff1f6e83-0c74-4652-9c50-eb981a014315",
 			"name": "DeleteUserFailPermission",
 			"url": "127.0.0.1:8080/auth/delete",
-			"time": 32,
+			"time": 29,
 			"responseCode": {
 				"code": 403,
 				"name": "Forbidden"
@@ -793,38 +546,18 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 403": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response content type is application/problem+json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				528,
-				22,
-				43,
-				23,
-				32
+				29
 			],
 			"allTests": [
-				{
-					"Response status code is 403": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 403": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 403": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 403": true,
-					"Response content type is application/problem+json": true
-				},
 				{
 					"Response status code is 403": true,
 					"Response content type is application/problem+json": true
@@ -834,8 +567,8 @@
 		{
 			"id": "3c71f887-7c04-44c5-80f0-beedaaca8aae",
 			"name": "DeleteApiTokenFailPermission",
-			"url": "127.0.0.1:8080/api/delete/b2686d54-52e6-4800-803d-996312c4c434",
-			"time": 30,
+			"url": "127.0.0.1:8080/api/delete/e3f005b2-ae4e-4a36-b789-03f6436246bc",
+			"time": 21,
 			"responseCode": {
 				"code": 403,
 				"name": "Forbidden"
@@ -846,38 +579,18 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 403": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response content type is application/problem+json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				100,
-				16,
-				181,
-				13,
-				30
+				21
 			],
 			"allTests": [
-				{
-					"Response status code is 403": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 403": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 403": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 403": true,
-					"Response content type is application/problem+json": true
-				},
 				{
 					"Response status code is 403": true,
 					"Response content type is application/problem+json": true
@@ -886,9 +599,9 @@
 		},
 		{
 			"id": "673dd18c-8143-4423-9734-71dcc4e76425",
-			"name": "DeleteApiToken",
-			"url": "127.0.0.1:8080/api/delete/b2686d54-52e6-4800-803d-996312c4c434",
-			"time": 29,
+			"name": "DeleteApiTokenSuccess",
+			"url": "127.0.0.1:8080/api/delete/e3f005b2-ae4e-4a36-b789-03f6436246bc",
+			"time": 53,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -901,54 +614,26 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Content-Type is application/json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response contains the required fields": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"ActionType must be a non-empty string": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				149,
-				26,
-				17,
-				19,
-				29
+				53
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Content-Type is application/json": true,
-					"Response contains the required fields": true,
-					"ActionType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Content-Type is application/json": true,
-					"Response contains the required fields": true,
-					"ActionType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Content-Type is application/json": true,
-					"Response contains the required fields": true,
-					"ActionType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Content-Type is application/json": true,
-					"Response contains the required fields": true,
-					"ActionType must be a non-empty string": true
-				},
 				{
 					"Response status code is 200": true,
 					"Content-Type is application/json": true,
@@ -961,7 +646,7 @@
 			"id": "4a4a3c7e-38a6-46cd-ae02-6161f6cd99b9",
 			"name": "GetAllApiTokensEmpty",
 			"url": "127.0.0.1:8080/api/getAll",
-			"time": 21,
+			"time": 37,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -974,54 +659,26 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response content type is application/json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response is an array": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"The response array must be empty": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				268,
-				16,
-				11,
-				18,
-				21
+				37
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response is an array": true,
-					"The response array must be empty": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response is an array": true,
-					"The response array must be empty": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response is an array": true,
-					"The response array must be empty": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response is an array": true,
-					"The response array must be empty": true
-				},
 				{
 					"Response status code is 200": true,
 					"Response content type is application/json": true,
@@ -1034,7 +691,7 @@
 			"id": "e507a9a5-2232-4d6d-9cd8-8d17b92eda67",
 			"name": "HelloAuthenticatedApiTokenFail",
 			"url": "127.0.0.1:8080/auth/",
-			"time": 11,
+			"time": 33,
 			"responseCode": {
 				"code": 401,
 				"name": "Unauthorized"
@@ -1044,30 +701,14 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 401": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				66,
-				13,
-				22,
-				18,
-				11
+				33
 			],
 			"allTests": [
-				{
-					"Response status code is 401": true
-				},
-				{
-					"Response status code is 401": true
-				},
-				{
-					"Response status code is 401": true
-				},
-				{
-					"Response status code is 401": true
-				},
 				{
 					"Response status code is 401": true
 				}
@@ -1077,7 +718,7 @@
 			"id": "6e232a81-8191-43b7-b9a2-84742b7fd851",
 			"name": "ResourceLimit",
 			"url": "127.0.0.1:8080/user/resourceLimit",
-			"time": 28,
+			"time": 72,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1091,62 +732,30 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response content type is application/json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response has required fields: time and unitType": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Time is not zero and a non-negative integer": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"UnitType must be a non-empty string": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				81,
-				23,
-				19,
-				21,
-				28
+				72
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response has required fields: time and unitType": true,
-					"Time is not zero and a non-negative integer": true,
-					"UnitType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response has required fields: time and unitType": true,
-					"Time is not zero and a non-negative integer": true,
-					"UnitType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response has required fields: time and unitType": true,
-					"Time is not zero and a non-negative integer": true,
-					"UnitType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response has required fields: time and unitType": true,
-					"Time is not zero and a non-negative integer": true,
-					"UnitType must be a non-empty string": true
-				},
 				{
 					"Response status code is 200": true,
 					"Response content type is application/json": true,
@@ -1160,7 +769,7 @@
 			"id": "59381005-fa78-4884-a913-2dd7eb478179",
 			"name": "LongRunningTask",
 			"url": "127.0.0.1:8080/user/longRun",
-			"time": 21742,
+			"time": 20027,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1171,38 +780,18 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Request duration is at least 20 seconds": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				20188,
-				20031,
-				20038,
-				20038,
-				21742
+				20027
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Request duration is at least 20 seconds": true
-				},
-				{
-					"Response status code is 200": true,
-					"Request duration is at least 20 seconds": true
-				},
-				{
-					"Response status code is 200": true,
-					"Request duration is at least 20 seconds": true
-				},
-				{
-					"Response status code is 200": true,
-					"Request duration is at least 20 seconds": true
-				},
 				{
 					"Response status code is 200": true,
 					"Request duration is at least 20 seconds": true
@@ -1211,9 +800,9 @@
 		},
 		{
 			"id": "6e7756d0-501e-4aa6-addd-58e621113dbc",
-			"name": "ResourceLimit",
+			"name": "ResourceLimitReduced",
 			"url": "127.0.0.1:8080/user/resourceLimit",
-			"time": 603,
+			"time": 43,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1227,62 +816,30 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response content type is application/json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response has required fields: time and unitType": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Time is not zero and a non-negative integer": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"UnitType must be a non-empty string": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				71,
-				84,
-				37,
-				35,
-				603
+				43
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response has required fields: time and unitType": true,
-					"Time is not zero and a non-negative integer": true,
-					"UnitType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response has required fields: time and unitType": true,
-					"Time is not zero and a non-negative integer": true,
-					"UnitType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response has required fields: time and unitType": true,
-					"Time is not zero and a non-negative integer": true,
-					"UnitType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response content type is application/json": true,
-					"Response has required fields: time and unitType": true,
-					"Time is not zero and a non-negative integer": true,
-					"UnitType must be a non-empty string": true
-				},
 				{
 					"Response status code is 200": true,
 					"Response content type is application/json": true,
@@ -1296,7 +853,7 @@
 			"id": "c4310c60-8b5d-453f-8393-a5aa5ad70648",
 			"name": "LongRunningTaskSecond",
 			"url": "127.0.0.1:8080/user/longRun",
-			"time": 20192,
+			"time": 20038,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1307,38 +864,18 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Request duration is at least 20 seconds": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				20051,
-				20058,
-				20041,
-				20047,
-				20192
+				20038
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Request duration is at least 20 seconds": true
-				},
-				{
-					"Response status code is 200": true,
-					"Request duration is at least 20 seconds": true
-				},
-				{
-					"Response status code is 200": true,
-					"Request duration is at least 20 seconds": true
-				},
-				{
-					"Response status code is 200": true,
-					"Request duration is at least 20 seconds": true
-				},
 				{
 					"Response status code is 200": true,
 					"Request duration is at least 20 seconds": true
@@ -1349,7 +886,7 @@
 			"id": "c2812d37-ceeb-48be-bb04-256ca59993b4",
 			"name": "LongRunningTaskThird",
 			"url": "127.0.0.1:8080/user/longRun",
-			"time": 20145,
+			"time": 20031,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1360,38 +897,18 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Request duration is at least 20 seconds": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				20072,
-				20034,
-				20102,
-				20079,
-				20145
+				20031
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Request duration is at least 20 seconds": true
-				},
-				{
-					"Response status code is 200": true,
-					"Request duration is at least 20 seconds": true
-				},
-				{
-					"Response status code is 200": true,
-					"Request duration is at least 20 seconds": true
-				},
-				{
-					"Response status code is 200": true,
-					"Request duration is at least 20 seconds": true
-				},
 				{
 					"Response status code is 200": true,
 					"Request duration is at least 20 seconds": true
@@ -1402,7 +919,7 @@
 			"id": "1443c123-d96e-4559-86d6-0a5cf76c5abf",
 			"name": "LongRunningTaskFailPermission",
 			"url": "127.0.0.1:8080/user/longRun",
-			"time": 44,
+			"time": 20,
 			"responseCode": {
 				"code": 403,
 				"name": "Forbidden"
@@ -1414,46 +931,22 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 403": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response content type is application/problem+json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Request duration is less than 20 seconds": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				37,
-				33,
-				60,
-				21,
-				44
+				20
 			],
 			"allTests": [
-				{
-					"Response status code is 403": true,
-					"Response content type is application/problem+json": true,
-					"Request duration is less than 20 seconds": true
-				},
-				{
-					"Response status code is 403": true,
-					"Response content type is application/problem+json": true,
-					"Request duration is less than 20 seconds": true
-				},
-				{
-					"Response status code is 403": true,
-					"Response content type is application/problem+json": true,
-					"Request duration is less than 20 seconds": true
-				},
-				{
-					"Response status code is 403": true,
-					"Response content type is application/problem+json": true,
-					"Request duration is less than 20 seconds": true
-				},
 				{
 					"Response status code is 403": true,
 					"Response content type is application/problem+json": true,
@@ -1463,9 +956,9 @@
 		},
 		{
 			"id": "7630449b-537e-4c0b-912e-57cbbef7c341",
-			"name": "ResourceLimit",
+			"name": "ResourceLimitZero",
 			"url": "127.0.0.1:8080/user/resourceLimit",
-			"time": 30,
+			"time": 29,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1479,62 +972,30 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response Content-Type is application/json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response contains required fields: time and unitType": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Time is a zero or a negativ integer": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"UnitType must be a non-empty string": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				43,
-				32,
-				22,
-				28,
-				30
+				29
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response contains required fields: time and unitType": true,
-					"Time is a zero or a negativ integer": true,
-					"UnitType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response contains required fields: time and unitType": true,
-					"Time is a zero or a negativ integer": true,
-					"UnitType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response contains required fields: time and unitType": true,
-					"Time is a zero or a negativ integer": true,
-					"UnitType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response contains required fields: time and unitType": true,
-					"Time is a zero or a negativ integer": true,
-					"UnitType must be a non-empty string": true
-				},
 				{
 					"Response status code is 200": true,
 					"Response Content-Type is application/json": true,
@@ -1548,7 +1009,7 @@
 			"id": "a8c1bd51-d747-47ae-971a-3910ade260ab",
 			"name": "DeleteUser",
 			"url": "127.0.0.1:8080/auth/delete",
-			"time": 52,
+			"time": 37,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1561,54 +1022,26 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 200": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response Content-Type is application/json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response contains the required fields": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"ActionType must be a non-empty string": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				78,
-				50,
-				55,
-				36,
-				52
+				37
 			],
 			"allTests": [
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response contains the required fields": true,
-					"ActionType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response contains the required fields": true,
-					"ActionType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response contains the required fields": true,
-					"ActionType must be a non-empty string": true
-				},
-				{
-					"Response status code is 200": true,
-					"Response Content-Type is application/json": true,
-					"Response contains the required fields": true,
-					"ActionType must be a non-empty string": true
-				},
 				{
 					"Response status code is 200": true,
 					"Response Content-Type is application/json": true,
@@ -1619,9 +1052,9 @@
 		},
 		{
 			"id": "0055c096-c7af-41f7-857c-5c764624e06a",
-			"name": "LoginUserFail",
+			"name": "LoginUserFailDeleted",
 			"url": "127.0.0.1:8080/auth/login",
-			"time": 69,
+			"time": 25,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1632,49 +1065,114 @@
 			},
 			"testPassFailCounts": {
 				"Response status code is 400": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				},
 				"Response content type is application/problem+json": {
-					"pass": 5,
+					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				106,
-				43,
-				58,
-				44,
-				69
+				25
 			],
 			"allTests": [
 				{
 					"Response status code is 400": true,
 					"Response content type is application/problem+json": true
-				},
+				}
+			]
+		},
+		{
+			"id": "92d0c076-1116-40ff-bdca-f941dbdf37b8",
+			"name": "RateLimitFirst",
+			"url": "127.0.0.1:8080/auth/",
+			"time": 18,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Response status code is 401": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 401": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				18
+			],
+			"allTests": [
 				{
-					"Response status code is 400": true,
-					"Response content type is application/problem+json": true
-				},
+					"Response status code is 401": true
+				}
+			]
+		},
+		{
+			"id": "d7fed56a-5b32-43e0-be01-600e62d541be",
+			"name": "RateLimitSecond",
+			"url": "127.0.0.1:8080/user/resourceLimit",
+			"time": 6,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Response status code is 401 or 429": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 401 or 429": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
 				{
-					"Response status code is 400": true,
-					"Response content type is application/problem+json": true
-				},
+					"Response status code is 401 or 429": true
+				}
+			]
+		},
+		{
+			"id": "82005ed8-b279-4879-920f-31dd0c586a90",
+			"name": "RateLimitFailRequest",
+			"url": "127.0.0.1:8080/user/resourceLimit",
+			"time": 5,
+			"responseCode": {
+				"code": 429,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Response status code is 429": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 429": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
 				{
-					"Response status code is 400": true,
-					"Response content type is application/problem+json": true
-				},
-				{
-					"Response status code is 400": true,
-					"Response content type is application/problem+json": true
+					"Response status code is 429": true
 				}
 			]
 		}
 	],
-	"count": 5,
-	"totalTime": 339109,
+	"count": 1,
+	"totalTime": 69265,
 	"collection": {
 		"requests": [
+			{
+				"id": "b9a5d7a6-b8dd-428c-9c1c-474fb3a2ad07",
+				"method": "POST"
+			},
 			{
 				"id": "15986188-ab75-40be-8bdb-79f41bf87a1a",
 				"method": "POST"
@@ -1778,6 +1276,18 @@
 			{
 				"id": "0055c096-c7af-41f7-857c-5c764624e06a",
 				"method": "POST"
+			},
+			{
+				"id": "92d0c076-1116-40ff-bdca-f941dbdf37b8",
+				"method": "GET"
+			},
+			{
+				"id": "d7fed56a-5b32-43e0-be01-600e62d541be",
+				"method": "GET"
+			},
+			{
+				"id": "82005ed8-b279-4879-920f-31dd0c586a90",
+				"method": "GET"
 			}
 		]
 	}

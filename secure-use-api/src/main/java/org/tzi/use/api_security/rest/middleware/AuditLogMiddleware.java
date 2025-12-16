@@ -50,8 +50,6 @@ public class AuditLogMiddleware extends OncePerRequestFilter {
         Authentication anonymousUser = SecurityContextHolder.getContext().getAuthentication();
         UserAuthentication user = null;
 
-        System.out.println(anonymousUser);
-
         // If user is know and of instance UserAuthentication and not
         // org.springframework.security.authentication.AnonymousAuthenticationToken
         if (anonymousUser != null && anonymousUser instanceof UserAuthentication) {

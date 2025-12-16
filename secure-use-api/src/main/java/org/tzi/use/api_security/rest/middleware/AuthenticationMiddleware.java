@@ -33,9 +33,6 @@ public class AuthenticationMiddleware extends OncePerRequestFilter {
 
         String authorizationHeader = request.getHeader("Authorization");
 
-        System.out.println("hey");
-        System.out.println(authorizationHeader);
-
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             try {
                 // Extract the token by removing the "Bearer " prefix

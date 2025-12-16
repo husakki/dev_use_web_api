@@ -7,6 +7,71 @@
 	},
 	"item": [
 		{
+			"name": "RegisterUserInputValidationFail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 400', function () {",
+							"    pm.expect(pm.response.code).to.equal(400);",
+							"})",
+							"",
+							"pm.test('Response content type is application/problem+json', function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/problem+json');",
+							"})",
+							"",
+							"pm.test('The password to short message must be present', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.message.password).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, 'Value should not be empty');",
+							"})",
+							"",
+							"pm.test('The email not well-formated message must be present', function () {",
+							"    const responseData = pm.response.json();",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.message.email).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, 'Value should not be empty');",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer xyz",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"noValidEmail\",\n    \"password\": \"short\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/auth/register",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "RegisterUserSuccess",
 			"event": [
 				{
@@ -414,7 +479,7 @@
 			"response": []
 		},
 		{
-			"name": "HelloAuthenticatedSuccess",
+			"name": "HelloAuthenticatedRefreshedSuccess",
 			"event": [
 				{
 					"listen": "test",
@@ -817,7 +882,7 @@
 			"response": []
 		},
 		{
-			"name": "DeleteApiToken",
+			"name": "DeleteApiTokenSuccess",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -1104,7 +1169,7 @@
 			"response": []
 		},
 		{
-			"name": "ResourceLimit",
+			"name": "ResourceLimitReduced",
 			"event": [
 				{
 					"listen": "test",
@@ -1314,7 +1379,7 @@
 			"response": []
 		},
 		{
-			"name": "ResourceLimit",
+			"name": "ResourceLimitZero",
 			"event": [
 				{
 					"listen": "test",
@@ -1448,7 +1513,7 @@
 			"response": []
 		},
 		{
-			"name": "LoginUserFail",
+			"name": "LoginUserFailDeleted",
 			"event": [
 				{
 					"listen": "test",
@@ -1492,6 +1557,147 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "RateLimitFirst",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 401', function () {",
+							"    pm.expect(pm.response.code).to.equal(401);",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/auth/",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RateLimitSecond",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 401 or 429', function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([401, 429])",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/user/resourceLimit",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"resourceLimit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RateLimitFailRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code is 429', function () {",
+							"    pm.expect(pm.response.code).to.equal(429);",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AccessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/user/resourceLimit",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"resourceLimit"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -1530,14 +1736,6 @@
 		{
 			"key": "UserPassword",
 			"value": "SecurePassword"
-		},
-		{
-			"key": "AccessToken",
-			"value": ""
-		},
-		{
-			"key": "RefreshToken",
-			"value": ""
 		},
 		{
 			"key": "ApiToken",

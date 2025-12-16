@@ -81,9 +81,6 @@ public class AuthenticationController {
             AccessToken accessToken = this.authService.login(loginRequest.getEmail(), loginRequest.getPassword());
             RefreshToken refreshToken = refreshTokenService.create(accessToken);
 
-            System.out.println(accessToken);
-            System.out.println("lbub");
-
             return ResponseEntity.ok(new TokensDto(accessToken.toTokenString(), refreshToken.toTokenString()));
         } catch (AuthenticationException err) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, err.getMessage());
