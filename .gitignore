@@ -117,3 +117,4 @@ fabric.properties
 /use-assembly/target
 /.idea
 /use-api/target
+use-api/.env
